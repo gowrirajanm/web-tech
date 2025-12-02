@@ -55,3 +55,14 @@ logout.addEventListener("click",()=>{
 
     open('./signup.html')
 })
+
+
+let search =document.querySelector("input")
+search.addEventListener("input",(e)=>{
+    console.log(e.target.value);
+    
+})
+let checkUser=(data)=>{
+    console.log(data);
+    
+}
