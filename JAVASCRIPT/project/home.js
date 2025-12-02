@@ -11,13 +11,14 @@ let right = document.querySelector(".right")
 right.prepend(h2)
 
 
-
+let Users=[];
 let getData = async ()=>{
     try{
         
         let res =  await fetch("https://api.github.com/users")
         let data = await res.json()
         // console.log(data)
+        Users=data;
         diplayUser(data)      
     }
     catch(err)
@@ -35,6 +36,7 @@ let diplayUser =(data)=>{
     // console.log(data)
 
     let main = document.querySelector("main")
+    main.innerHTML=``
 
     data.map((ele)=>{
         // console.log(ele)
@@ -60,9 +62,13 @@ logout.addEventListener("click",()=>{
 let search =document.querySelector("input")
 search.addEventListener("input",(e)=>{
     console.log(e.target.value);
+    checkUser(e.target.value)
     
 })
 let checkUser=(data)=>{
     console.log(data);
-    
+    let x= Users.filter((e)=>{
+        return e.login.toLowerCase().includes(data.toLowerCase());
+    })
+    diplayUser(x)
 }
